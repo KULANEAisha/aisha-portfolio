@@ -1,0 +1,74 @@
+:root {
+  --bg: #0b1017;
+  --text: #e8ecf3;
+  --muted: #8b95a7;
+  --card: #121a26;
+  --border: #1f2a3a;
+  --accent: #2dd4bf;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+}
+
+main { max-width: 1000px; margin: 0 auto; padding: 0 1.25rem; }
+section { padding: 4rem 0; scroll-margin-top: 4rem; }
+a { color: var(--accent); }
+
+/* Navbar */
+.navbar {
+  position: sticky; top: 0; z-index: 10;
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 0.9rem 1.25rem;
+  background: var(--bg);
+  border-bottom: 1px solid var(--border);
+}
+.navbar nav { display: flex; gap: 1rem; flex-wrap: wrap; }
+.navbar nav a { text-decoration: none; text-transform: capitalize; color: var(--text); }
+.navbar nav a:hover, .logo { color: var(--accent); font-weight: 700; text-decoration: none; }
+
+/* Hero */
+.hero { padding: 6rem 0 4rem; }
+.eyebrow { color: var(--accent); font-weight: 600; margin: 0; }
+.hero h1 { font-size: clamp(2.2rem, 7vw, 4rem); margin: 0.2rem 0; }
+.hero h2 { font-weight: 500; color: var(--muted); margin: 0 0 1rem; font-size: clamp(1.1rem, 3vw, 1.5rem); }
+.lead { max-width: 600px; }
+
+/* Buttons */
+.buttons { display: flex; gap: 0.75rem; flex-wrap: wrap; margin-top: 1.5rem; }
+.btn {
+  padding: 0.65rem 1.2rem; border-radius: 8px;
+  border: 1px solid var(--accent); text-decoration: none; font-weight: 600;
+}
+.btn.primary { background: var(--accent); color: var(--bg); }
+.btn:hover { opacity: 0.85; }
+
+/* Sections and cards */
+.section-title { font-size: 1.8rem; margin: 0 0 1.5rem; }
+.grid { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+.card {
+  background: var(--card); border: 1px solid var(--border);
+  border-radius: 12px; padding: 1.25rem; margin-bottom: 1rem;
+  transition: transform 0.25s ease, border-color 0.25s ease;
+}
+.card:hover { transform: translateY(-6px); border-color: var(--accent); }
+.card h3 { margin-top: 0; }
+.muted { color: var(--muted); margin: 0; }
+.tags { list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: 0.4rem; }
+.tags li {
+  background: var(--bg); border: 1px solid var(--border);
+  padding: 0.2rem 0.65rem; border-radius: 999px; font-size: 0.85rem;
+}
+.card-links { display: flex; gap: 1rem; font-weight: 600; }
+
+footer { margin-top: 4rem; color: var(--muted); font-size: 0.9rem; }
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; }
+}
