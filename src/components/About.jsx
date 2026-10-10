@@ -10,6 +10,7 @@ export default function About() {
         </Reveal>
         <Reveal delay={0.1}>
           <p className="statement">{profile.about}</p>
+          <p className="label muted languages">Languages: {profile.languages}</p>
         </Reveal>
       </div>
     </section>
