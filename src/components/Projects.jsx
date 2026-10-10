@@ -1,5 +1,35 @@
-import { projects } from "../data";
+import { useState } from "react";
+import { projects } from "../projects";
 import Reveal from "./Reveal";
+
+function Cover({ p }) {
+  const [failed, setFailed] = useState({});
+
+  const wanted = p.cover
+    ? [p.cover]
+    : (p.screenshots || []).slice(0, p.device === "mobile" ? 2 : 1);
+  const shown = wanted.filter((s) => !failed[s]);
+
+  return (
+    <div className="visual" style={{ background: p.color, color: p.ink }}>
+      {shown.length > 0 ? (
+        <div className="visual-imgs">
+          {shown.map((src, i) => (
+            <img
+              key={src}
+              src={src}
+              alt={i === 0 ? `${p.name} screenshot` : ""}
+              loading="lazy"
+              onError={() => setFailed((f) => ({ ...f, [src]: true }))}
+            />
+          ))}
+        </div>
+      ) : (
+        <span className="visual-word">{p.word}</span>
+      )}
+    </div>
+  );
+}
 
 export default function Projects() {
   return (
@@ -13,37 +43,23 @@ export default function Projects() {
 
       <div className="work-grid">
         {projects.map((p, i) => (
-          <Reveal key={p.name} delay={(i % 2) * 0.12} className={`work-item ${i % 2 ? "offset" : ""}`}>
-            <article>
-              <div className="visual" style={{ background: p.color, color: p.ink }}>
-                {p.image ? (
-                  <img src={p.image} alt={`${p.name} screenshot`} />
-                ) : (
-                  <span className="visual-word">{p.word}</span>
-                )}
-              </div>
-
+          <Reveal key={p.slug} delay={(i % 2) * 0.12} className={`work-item ${i % 2 ? "offset" : ""}`}>
+            <a className="work-card" href={`#/project/${p.slug}`} aria-label={`Open ${p.name}`}>
+              <Cover p={p} />
               <div className="work-meta">
                 <div className="work-title">
                   <span className="num">0{i + 1}</span>
                   <h3>{p.name}</h3>
-                  {p.github && (
-                    <a className="arrow" href={p.github} target="_blank" rel="noreferrer" aria-label={`${p.name} on GitHub`}>
-                      ↗
-                    </a>
-                  )}
+                  <span className="arrow" aria-hidden="true">↗</span>
                 </div>
                 <p className="label muted">{p.category} · {p.year}</p>
                 <p className="desc">{p.description}</p>
                 <ul className="tags">
-                  {p.tech.map((t) => <li key={t}>{t}</li>)}
+                  {p.tech.slice(0, 4).map((t) => <li key={t}>{t}</li>)}
                 </ul>
-                <div className="work-links label">
-                  {p.github && <a href={p.github} target="_blank" rel="noreferrer">GitHub</a>}
-                  {p.demo && <a href={p.demo} target="_blank" rel="noreferrer">Live demo</a>}
-                </div>
+                <p className="label view-more">View project →</p>
               </div>
-            </article>
+            </a>
           </Reveal>
         ))}
       </div>

@@ -23,7 +23,7 @@ const Sun = () => (
   </svg>
 );
 
-export default function Navbar({ theme, toggleTheme }) {
+export default function Navbar({ theme, toggleTheme, route }) {
   const [active, setActive] = useState("top");
 
   useEffect(() => {
@@ -39,7 +39,7 @@ export default function Navbar({ theme, toggleTheme }) {
       if (el) observer.observe(el);
     });
     return () => observer.disconnect();
-  }, []);
+    }, [route]);
 
   return (
     <motion.header

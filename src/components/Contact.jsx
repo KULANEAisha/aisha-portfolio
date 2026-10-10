@@ -1,16 +1,21 @@
 import { profile } from "../data";
+import Reveal from "./Reveal";
 
 export default function Contact() {
   return (
-    <section id="contact">
-      <h2 className="section-title">Contact</h2>
-      <p>I'm open to cybersecurity, cloud and software engineering opportunities.</p>
-      <div className="buttons">
-        <a className="btn primary" href={`mailto:${profile.email}`}>Email Me</a>
-        <a className="btn" href={profile.linkedin} target="_blank" rel="noreferrer">LinkedIn</a>
-        <a className="btn" href={profile.github} target="_blank" rel="noreferrer">GitHub</a>
-      </div>
-      <footer>© {new Date().getFullYear()} {profile.name}</footer>
+    <section id="contact" className="contact">
+      <Reveal>
+        <p className="contact-lead">
+          Open to frontend, product design and software engineering opportunities.
+        </p>
+
+        <a className="contact-email" href={`mailto:${profile.email}`}>
+          <span>{profile.email}</span>
+          <span className="big-arrow" aria-hidden="true">→</span>
+        </a>
+
+        <p className="contact-credit label">Designed and built by {profile.name}</p>
+      </Reveal>
     </section>
   );
 }
