@@ -171,7 +171,7 @@ export const activities = [
   },
   {
     role: "Coordinator",
-    org: "USIU-A Student Ambassador",
+    org: "USIU Student Ambassador",
     period: "Sept 2025 – Jan 2026",
     text: "Volunteered leadership and service during school engagements.",
   },

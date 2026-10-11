@@ -75,7 +75,7 @@ export default function App() {
           </>
         )}
       </main>
-      <Contact />
+            <Contact compact={Boolean(slug)} />
     </MotionConfig>
   );
 }
