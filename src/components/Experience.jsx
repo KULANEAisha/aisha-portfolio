@@ -1,66 +1,121 @@
-import { experience, activities, education } from "../data";
+import { experience, activities, education, profile } from "../data";
+import { projects } from "../projects";
 import Reveal from "./Reveal";
 
+const featuredSlugs = ["disaster-response", "peekevent", "course-advising"];
+
 export default function Experience() {
+  const featured = featuredSlugs
+    .map((slug) => projects.find((p) => p.slug === slug))
+    .filter(Boolean);
+
   return (
-    <section id="experience" className="compact">
+    <section id="experience" className="experience">
       <Reveal>
-        <div className="section-head">
-          <h2 className="label">Experience</h2>
+        <div className="exp-head">
+          <p className="label exp-eyebrow">Experience</p>
+          <h2 className="exp-title">Work history</h2>
+          <p className="exp-sub">
+            Roles, leadership and shipped work from my resume.
+          </p>
+          <a
+            className="pill ghost"
+            href={profile.resume}
+            download="Aisha_Kulane_Resume.pdf"
+          >
+            Download resume
+          </a>
         </div>
       </Reveal>
-      {experience.map((e, i) => (
-        <Reveal key={e.role + e.org} delay={i * 0.08}>
-          <div className="row">
-            <p className="label muted">{e.period}</p>
-            <div>
-              <h3 className="row-title">{e.role} · {e.org}</h3>
-              <ul className="points">
-                {e.points.map((pt) => <li key={pt}>{pt}</li>)}
-              </ul>
+
+      <div className="exp-list">
+        {experience.map((e) => (
+          <Reveal key={e.role + e.org}>
+            <div className="job">
+              <div>
+                <p className="label job-when">{e.period}</p>
+                {e.location && <p className="job-where">{e.location}</p>}
+              </div>
+              <div>
+                <h3 className="job-role">
+                  {e.role} <span className="org">· {e.org}</span>
+                </h3>
+                <ul className="job-points">
+                  {e.points.map((pt) => <li key={pt}>{pt}</li>)}
+                </ul>
+
+                {e.projects && (
+                  <>
+                    <p className="label job-label">Projects</p>
+                    <ul className="job-points">
+                      {e.projects.map((pr) => <li key={pr}>{pr}</li>)}
+                    </ul>
+                  </>
+                )}
+
+                {e.tags && (
+                  <ul className="tags">
+                    {e.tags.map((t) => <li key={t}>{t}</li>)}
+                  </ul>
+                )}
+              </div>
             </div>
-          </div>
-        </Reveal>
-      ))}
+          </Reveal>
+        ))}
+      </div>
 
       <Reveal>
         <div className="section-head spaced">
           <h2 className="label">Leadership &amp; Activities</h2>
         </div>
       </Reveal>
-      {activities.map((a, i) => (
-        <Reveal key={a.org} delay={i * 0.06}>
-          <div className="row">
-            <p className="label muted">{a.period}</p>
-            <div>
-              <h3 className="row-title">{a.role} · {a.org}</h3>
-              <p className="muted">{a.text}</p>
+      <div className="exp-list flush">
+        {activities.map((a) => (
+          <Reveal key={a.org}>
+            <div className="job">
+              <p className="label job-when">{a.period}</p>
+              <div>
+                <h3 className="job-role">
+                  {a.role} <span className="org">· {a.org}</span>
+                </h3>
+                <p className="job-text">{a.text}</p>
+              </div>
             </div>
+          </Reveal>
+        ))}
+      </div>
+
+      <div className="panels">
+        <Reveal>
+          <div className="panel">
+            <h3 className="panel-title">Selected projects</h3>
+            {featured.map((p) => (
+              <div className="sel" key={p.slug}>
+                <h4>
+                  <a href={p.github} target="_blank" rel="noreferrer">
+                    {p.name} <span aria-hidden="true">↗</span>
+                  </a>
+                </h4>
+                <p>{p.description}</p>
+                <ul className="tags">
+                  {p.tech.slice(0, 4).map((t) => <li key={t}>{t}</li>)}
+                </ul>
+              </div>
+            ))}
           </div>
         </Reveal>
-      ))}
 
-      <Reveal>
-        <div className="section-head spaced">
-          <h2 className="label">Education</h2>
-        </div>
-        <div className="row">
-          <p className="label muted">{education.period}</p>
-          <div>
-            <h3 className="row-title">{education.degree}</h3>
+        <Reveal delay={0.1}>
+          <div className="panel">
+            <h3 className="panel-title">Education</h3>
+            <p className="edu-degree">{education.degree}</p>
             <p>{education.school}</p>
-            <p className="muted">{education.honors}</p>
-            <p className="muted">Coursework: {education.coursework}</p>
+            <p className="edu-date">{education.period}</p>
+            <p className="edu-note">{education.honors}</p>
+            <p className="edu-note">Coursework: {education.coursework}</p>
           </div>
-        </div>
-        <div className="row">
-          <p className="label muted">{education.certDate}</p>
-          <div>
-            <h3 className="row-title">{education.certification}</h3>
-            <p className="muted">Certification</p>
-          </div>
-        </div>
-      </Reveal>
+        </Reveal>
+      </div>
     </section>
   );
 }

@@ -7,8 +7,8 @@ export const profile = {
     "Cum Laude Software Engineering graduate who both designs and builds. I create accessible, user-centered interfaces in Figma and ship them in React, Node.js and Firebase for East African users.",
   location: "Nairobi · Kenya",
   tags: "Frontend / Design / Cloud",
-  about:
-    "I'm a Cum Laude Software Engineering graduate who both designs and builds. At Konvergenz Network Solutions I designed production healthcare interfaces in Figma, including an Oncology Module and the redesign of the Afya Yangu platform, and I ship working products in React.js, JavaScript, Node.js and Firebase. I bring user-centered design, accessibility fundamentals and implementation-aware handoff to teams building digital products for East African users.",
+   about:
+    "I'm a Software Engineering graduate with Cum Laude honors, passionate about product design and frontend development. I combine creativity with technical problem-solving to design intuitive interfaces and build responsive, user-centered digital experiences. I enjoy turning ideas into functional products that look great, feel effortless to use, and solve real-world problems.",
   languages: "Swahili, English, Somali (fluent) · Arabic (conversational)",
   github: "https://github.com/KULANEAisha",
   linkedin: "https://www.linkedin.com/in/aisha-kulane-b4b14a2a1",
@@ -134,16 +134,21 @@ export const projects = [
 export const experience = [
   {
     role: "UI/UX Intern",
-    org: "Konvergenz Network Solutions, Nairobi",
+    org: "Konvergenz Network Solutions",
     period: "Jan 2026 – Apr 2026",
+    location: "Nairobi, Kenya",
     points: [
       "Led end-to-end design (research, wireframes, prototypes, usability testing, iteration) of an Oncology Module in Figma, working with clinical and engineering teams to deliver a production-ready interface.",
       "Contributed to the Afya Yangu digital health platform redesign, applying brand colors and designing empty states that improved visual consistency and reduced user confusion across key flows.",
       "Built reusable components with Figma auto-layout and variants for scalable design systems, applying accessibility fundamentals (contrast, tap targets).",
       "Worked alongside the DevOps team (CI/CD, monitoring, cloud infrastructure) to design with implementation feasibility in mind.",
     ],
+    projects: ["Afya Yangu Oncology Module", "Afya Yangu platform redesign"],
+    tags: ["Figma", "Prototyping", "Design systems", "Usability testing", "Accessibility", "Developer handoff"],
   },
 ];
+
+
 
 export const activities = [
   {
@@ -179,8 +184,6 @@ export const education = {
   honors: "Cum Laude · Dean's List 2024 & 2025",
   coursework:
     "Software Design & Architecture, Applied Machine Learning, Artificial Intelligence, Data Structures & Algorithms",
-  certification: "Introduction to Cybersecurity",
-  certDate: "Apr 2024",
 };
 
 export const stack = [
